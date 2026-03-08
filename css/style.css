@@ -1,0 +1,494 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 헤더 */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+  color: #fff;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+.header-left h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header-left .subtitle {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-left: 8px;
+}
+
+.header-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-box .stat-label {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+
+.stat-box .stat-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.stat-box .stat-value.broadcast {
+  color: #93c5fd;
+}
+
+.stat-box .stat-value.internet {
+  color: #6ee7b7;
+}
+
+.stat-box .stat-value.household {
+  color: #fbbf24;
+}
+
+/* 컨테이너 */
+#container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 사이드바 */
+#sidebar {
+  width: 340px;
+  background: #fff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+}
+
+/* 빵가루 */
+#breadcrumb {
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.crumb {
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.crumb:hover {
+  color: #2563eb;
+}
+
+.crumb.active {
+  color: #1e3a5f;
+  font-weight: 600;
+  cursor: default;
+}
+
+.crumb-sep {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+/* 검색 */
+.search-box {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+/* 정렬 */
+.sort-controls {
+  padding: 8px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.sort-controls select {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+  background: #fff;
+}
+
+.mode-btn-group {
+  display: flex;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.mode-btn {
+  padding: 4px 7px;
+  border: none;
+  border-right: 1px solid #cbd5e1;
+  font-size: 11px;
+  cursor: pointer;
+  background: #fff;
+  color: #64748b;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mode-btn:last-child { border-right: none; }
+.mode-btn.active { background: #3b82f6; color: #fff; }
+.mode-btn:hover:not(.active) { background: #f1f5f9; }
+
+/* 데이터 리스트 */
+#dataList {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+
+#dataList li {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#dataList li:hover {
+  background: #eff6ff;
+}
+
+#dataList li.active {
+  background: #dbeafe;
+  border-left: 3px solid #3b82f6;
+}
+
+.list-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.list-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.list-item-arrow {
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+.list-item-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.list-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.list-stat .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.broadcast { background: #3b82f6; }
+.dot.internet { background: #10b981; }
+.dot.household { background: #f59e0b; }
+
+.list-stat .value {
+  color: #475569;
+  font-weight: 500;
+}
+
+.list-item-bar {
+  margin-top: 6px;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+}
+
+.bar-broadcast {
+  background: #3b82f6;
+  height: 100%;
+  transition: width 0.3s;
+}
+
+.bar-internet {
+  background: #10b981;
+  height: 100%;
+  transition: width 0.3s;
+}
+
+/* 지도 영역 */
+#mapArea {
+  flex: 1;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* 범례 */
+#legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.95);
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  font-size: 12px;
+  z-index: 10;
+}
+
+#legend h4 {
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 13px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.legend-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-scale {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+.small-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #64748b;
+  display: inline-block;
+}
+
+.big-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #64748b;
+  display: inline-block;
+}
+
+/* 인포윈도우 커스텀 */
+.info-window {
+  padding: 14px 16px;
+  min-width: 220px;
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+.info-window .info-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.info-window .info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.info-window .info-label {
+  color: #64748b;
+}
+
+.info-window .info-value {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.info-window .info-value.broadcast { color: #2563eb; }
+.info-window .info-value.internet { color: #059669; }
+
+.info-window .info-rate {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.info-window .info-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.info-window .info-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.info-window .info-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 0;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.info-window .info-btn:hover {
+  background: #1d4ed8;
+}
+
+/* 건물동 뷰 - 테이블 */
+.building-table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.building-table th {
+  background: #f1f5f9;
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.building-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.building-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* Leaflet 커스텀 마커 */
+.custom-marker {
+  background: none !important;
+  border: none !important;
+}
+
+/* Leaflet 팝업 커스텀 */
+.custom-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  padding: 0;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 0;
+  min-width: 220px;
+}
+
+.custom-popup .leaflet-popup-tip {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 범례 z-index 보강 (Leaflet 위로) */
+#legend {
+  z-index: 1000;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+  }
+  #sidebar {
+    width: 100%;
+    max-height: 40vh;
+  }
+  #mapArea {
+    flex: 1;
+  }
+  .header-stats {
+    display: none;
+  }
+}
